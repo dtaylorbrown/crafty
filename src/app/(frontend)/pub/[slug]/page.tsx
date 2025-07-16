@@ -24,6 +24,8 @@ export default async function Page({
     notFound();
   }
 
+  console.log("Pub data:", pub);
+
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
       <h1 className="text-4xl font-bold text-balance">{pub?.name}</h1>

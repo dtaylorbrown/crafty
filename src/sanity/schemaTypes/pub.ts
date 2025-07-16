@@ -53,5 +53,20 @@ export const pubType = defineType({
         },
       ],
     }),
+    defineField({
+      name: "staff",
+      type: "array",
+      description: "Staff members working at this pub",
+      of: [
+        {
+          type: "reference",
+          to: [
+            {
+              type: "staff",
+            },
+          ],
+        },
+      ],
+    }),
   ],
 });

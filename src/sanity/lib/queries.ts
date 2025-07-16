@@ -7,5 +7,23 @@ export const PUBS_QUERY =
 
 export const PUB_QUERY =
   defineQuery(`*[_type == "pub" && slug.current == $slug][0]{
-  name, tagline, address, image { ..., asset-> { url, metadata { dimensions } } }, "openingHours": availability, beers[]->{name, description}
+  name, 
+  tagline, 
+  address, 
+  image { 
+    ...,
+    asset -> { 
+      url, 
+      metadata { dimensions } 
+    } 
+  }, 
+  "openingHours": availability, 
+  beers[] -> {
+    name, 
+    description
+  },
+  staff[] -> {
+    name, 
+    role
+  }
 }`);

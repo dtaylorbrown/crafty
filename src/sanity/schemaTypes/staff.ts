@@ -31,22 +31,6 @@ export const staffType = defineType({
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: "pub",
-      title: "Pub",
-      description: "The pub where the staff member works",
-      type: "array",
-      of: [
-        {
-          type: "reference",
-          to: [
-            {
-              type: "pub",
-            },
-          ],
-        },
-      ],
-    }),
+    })
   ],
 });
