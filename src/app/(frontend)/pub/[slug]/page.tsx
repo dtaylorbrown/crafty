@@ -51,6 +51,19 @@ export default async function Page({
         />
       )}
       <hr />
+      <h3 className="text-xl font-bold text-balance">Beers</h3>
+      <ul className="list-disc pl-6">
+        {pub?.beers?.length > 0 ? (
+          pub.beers.map((beer: { name: string; description: string }) => (
+            <li key={beer.name} className="text-lg text-balance">
+              <strong>{beer.name}</strong>: {beer.description}
+            </li>
+          ))
+        ) : (
+          <li className="text-lg text-balance">No beers available</li>
+        )}
+      </ul>
+      <hr />
       <Link href="/">&larr; Return home</Link>
     </main>
   );
