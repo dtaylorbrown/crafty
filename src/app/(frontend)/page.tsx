@@ -19,6 +19,7 @@ export default async function Page() {
       </header>
       <main className="bg-black">
         <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-12 max-w-6xl">
+          <h2 className="text-3xl font-bold text-white mb-6 col-span-full text-center">Our Pubs</h2>
           {pubs.map((pub: { _id: string; slug: { current: string }; name: string; image: { asset: { url: string } } }) => (
             <li key={pub._id}>
               <Link
