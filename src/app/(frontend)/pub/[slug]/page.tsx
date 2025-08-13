@@ -24,13 +24,11 @@ export default async function Page({
     notFound();
   }
 
-  console.log("Pub data:", pub);
-
   return (
     <main className="container mx-auto grid grid-cols-1 gap-6 p-12">
       <h1 className="text-4xl font-bold text-balance">{pub?.name}</h1>
       <h2 className="text-2xl font-bold text-balance">{pub?.tagline}</h2>
-      <h3 className="text-xl font-bold text-balance">Opeing Hours</h3>
+      <h3 className="text-xl font-bold text-balance">Opening Hours</h3>
       <div className="text-lg text-balance">
         {pub?.openingHours && pub.openingHours.map((day: OpeningHour) => {
           return (

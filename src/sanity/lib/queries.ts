@@ -2,7 +2,16 @@ import { defineQuery } from "next-sanity";
 
 export const PUBS_QUERY =
   defineQuery(`*[_type == "pub" && defined(slug.current)][0...12]{
-  _id, name, slug
+  _id, 
+  name, 
+  slug, 
+  image { 
+    ...,
+    asset -> { 
+      url, 
+      metadata { dimensions } 
+    } 
+  }, 
 }`);
 
 export const PUB_QUERY =
