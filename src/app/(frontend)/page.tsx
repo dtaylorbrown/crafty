@@ -1,13 +1,13 @@
-import Link from "next/link";
-import Image from "next/image";
+// import Link from "next/link";
+// import Image from "next/image";
 
-import { client } from "@/sanity/lib/client";
-import { PUBS_QUERY } from "@/sanity/lib/queries";
+// import { client } from "@/sanity/lib/client";
+// import { PUBS_QUERY } from "@/sanity/lib/queries";
 
-const options = { next: { revalidate: 60 } };
+// const options = { next: { revalidate: 60 } };
 
 export default async function Page() {
-  const pubs = await client.fetch(PUBS_QUERY, {}, options);
+  // const pubs = await client.fetch(PUBS_QUERY, {}, options);
 
   return (
     <>
@@ -17,8 +17,10 @@ export default async function Page() {
           <h2 className="text-2xl sm:text-4xl font-semibold text-white">Craft Beer, Friendly Atmosphere</h2>
         </div>
       </header>
-      <main className="bg-black">
-        <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-12 max-w-6xl">
+      <main className="bg-black h-full text-3xl flex flex-col justify-center text-center text-white">
+        <h2>Hold onto your beers 🍺</h2>
+        <p>The crafty collection website coming soon...</p>
+        {/* <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-12 max-w-6xl">
           <h2 className="text-3xl font-bold text-white mb-6 col-span-full text-center">Our Pubs</h2>
           {pubs.map((pub: { _id: string; slug: { current: string }; name: string; image: { asset: { url: string } } }) => (
             <li key={pub._id}>
@@ -39,7 +41,7 @@ export default async function Page() {
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </main>
       <footer className="bg-emerald-950 text-white text-center py-6">
         <p>&copy; {new Date().getFullYear()} The Crafty Collection</p>
