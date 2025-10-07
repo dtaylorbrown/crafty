@@ -36,3 +36,21 @@ export const PUB_QUERY =
     role
   }
 }`);
+
+export const HOME_QUERY =
+  defineQuery(`*[_type == "homepage" && slug.current == "/home"]{
+  slug,
+  title,
+  intro,
+  hero {
+    headline,
+    subhead,
+    backgroundImage { 
+      ...,
+      asset -> { 
+        url, 
+        metadata { dimensions } 
+      } 
+    }
+  }
+}`);
