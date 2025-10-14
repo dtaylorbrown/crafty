@@ -18,7 +18,9 @@ export const PUB_QUERY =
   defineQuery(`*[_type == "pub" && slug.current == $slug][0]{
   name, 
   tagline, 
-  address, 
+  address,
+  description,
+  tapType,
   image { 
     ...,
     asset -> { 
@@ -29,8 +31,17 @@ export const PUB_QUERY =
   "openingHours": availability, 
   beers[] -> {
     name, 
-    description
-  },
+    description,
+    tapType,
+    abv,
+    image { 
+      ...,
+      asset -> { 
+        url, 
+        metadata { dimensions } 
+      } 
+    }
+  },  
   staff[] -> {
     name, 
     role

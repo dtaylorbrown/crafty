@@ -18,6 +18,13 @@ export const beerType = defineType({
       type: "text",
     }),
     defineField({
+      name: "tapType",
+      title: "Tap Type",
+      description: "Type of tap (e.g., Keg, Cask)",
+      type: "string",
+      options: { list: ["Keg", "Cask", "Bottle", "Can"] },
+    }),
+    defineField({
       name: "abv",
       title: "ABV",
       description: "Alcohol by volume percentage",
