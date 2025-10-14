@@ -54,3 +54,21 @@ export const HOME_QUERY =
     }
   }
 }`);
+
+export const EVENTS_QUERY =
+  defineQuery(`*[_type == "events" && date >= now()] | order(date asc)[0...3]{
+  title,
+  description,
+  date,
+    location -> {
+    name,
+    slug
+  },
+  image { 
+    ...,
+    asset -> { 
+      url, 
+      metadata { dimensions } 
+    } 
+  }
+}`);

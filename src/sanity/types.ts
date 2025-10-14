@@ -372,6 +372,29 @@ export type HOME_QUERYResult = Array<{
     } | null;
   } | null;
 }>;
+// Variable: EVENTS_QUERY
+// Query: *[_type == "events" && date >= now()] | order(date asc)[0...3]{  title,  description,  date,    location -> {    name,    slug  },  image {     ...,    asset -> {       url,       metadata { dimensions }     }   }}
+export type EVENTS_QUERYResult = Array<{
+  title: string | null;
+  description: string | null;
+  date: string | null;
+  location: {
+    name: string | null;
+    slug: Slug | null;
+  } | null;
+  image: {
+    asset: {
+      url: string | null;
+      metadata: {
+        dimensions: SanityImageDimensions | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -380,5 +403,6 @@ declare module "@sanity/client" {
     "*[_type == \"pub\" && defined(slug.current)][0...12]{\n  _id, \n  name, \n  slug, \n  image { \n    ...,\n    asset -> { \n      url, \n      metadata { dimensions } \n    } \n  }, \n}": PUBS_QUERYResult;
     "*[_type == \"pub\" && slug.current == $slug][0]{\n  name, \n  tagline, \n  address, \n  image { \n    ...,\n    asset -> { \n      url, \n      metadata { dimensions } \n    } \n  }, \n  \"openingHours\": availability, \n  beers[] -> {\n    name, \n    description\n  },\n  staff[] -> {\n    name, \n    role\n  }\n}": PUB_QUERYResult;
     "*[_type == \"homepage\" && slug.current == \"/home\"]{\n  slug,\n  title,\n  intro,\n  hero {\n    headline,\n    subhead,\n    backgroundImage { \n      ...,\n      asset -> { \n        url, \n        metadata { dimensions } \n      } \n    }\n  }\n}": HOME_QUERYResult;
+    "*[_type == \"events\" && date >= now()] | order(date asc)[0...3]{\n  title,\n  description,\n  date,\n    location -> {\n    name,\n    slug\n  },\n  image { \n    ...,\n    asset -> { \n      url, \n      metadata { dimensions } \n    } \n  }\n}": EVENTS_QUERYResult;
   }
 }
