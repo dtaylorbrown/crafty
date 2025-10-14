@@ -1,5 +1,156 @@
 [
   {
+    "name": "homepage",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "homepage"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "slug": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "slug"
+        },
+        "optional": true
+      },
+      "hero": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "object",
+          "attributes": {
+            "headline": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "subhead": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "backgroundImage": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "asset": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "_ref": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "reference"
+                          }
+                        },
+                        "_weak": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "boolean"
+                          },
+                          "optional": true
+                        }
+                      },
+                      "dereferencesTo": "sanity.imageAsset"
+                    },
+                    "optional": true
+                  },
+                  "media": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "unknown"
+                    },
+                    "optional": true
+                  },
+                  "hotspot": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "inline",
+                      "name": "sanity.imageHotspot"
+                    },
+                    "optional": true
+                  },
+                  "crop": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "inline",
+                      "name": "sanity.imageCrop"
+                    },
+                    "optional": true
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "image"
+                    }
+                  }
+                }
+              },
+              "optional": true
+            }
+          }
+        },
+        "optional": true
+      },
+      "intro": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
     "name": "beer",
     "type": "document",
     "attributes": {
@@ -274,50 +425,6 @@
           }
         },
         "optional": true
-      },
-      "pub": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "object",
-            "attributes": {
-              "_ref": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              },
-              "_type": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string",
-                  "value": "reference"
-                }
-              },
-              "_weak": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "boolean"
-                },
-                "optional": true
-              }
-            },
-            "dereferencesTo": "pub",
-            "rest": {
-              "type": "object",
-              "attributes": {
-                "_key": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "optional": true
       }
     }
   },
@@ -375,6 +482,28 @@
         "type": "objectAttribute",
         "value": {
           "type": "string"
+        },
+        "optional": true
+      },
+      "availability": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "availabilityDay"
+            }
+          }
         },
         "optional": true
       },
@@ -453,6 +582,993 @@
           }
         },
         "optional": true
+      },
+      "beers": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_ref": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "reference"
+                }
+              },
+              "_weak": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "boolean"
+                },
+                "optional": true
+              }
+            },
+            "dereferencesTo": "beer",
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
+      },
+      "staff": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_ref": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "reference"
+                }
+              },
+              "_weak": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "boolean"
+                },
+                "optional": true
+              }
+            },
+            "dereferencesTo": "staff",
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "availabilityDuration",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "availabilityDuration"
+          }
+        },
+        "from": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "12:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "12:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "12:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "12:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:45 PM"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "to": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "12:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "1:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "2:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "3:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "4:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "5:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "6:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "7:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "8:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "9:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "10:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:00 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:15 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:30 AM"
+              },
+              {
+                "type": "string",
+                "value": "11:45 AM"
+              },
+              {
+                "type": "string",
+                "value": "12:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "12:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "12:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "12:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "1:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "2:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "3:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "4:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "5:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "6:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "7:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "8:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "9:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "10:45 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:00 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:15 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:30 PM"
+              },
+              {
+                "type": "string",
+                "value": "11:45 PM"
+              }
+            ]
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "availabilityDay",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "availabilityDay"
+          }
+        },
+        "day": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "Monday"
+              },
+              {
+                "type": "string",
+                "value": "Tuesday"
+              },
+              {
+                "type": "string",
+                "value": "Wednesday"
+              },
+              {
+                "type": "string",
+                "value": "Thursday"
+              },
+              {
+                "type": "string",
+                "value": "Friday"
+              },
+              {
+                "type": "string",
+                "value": "Saturday"
+              },
+              {
+                "type": "string",
+                "value": "Sunday"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "availableTimes": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "array",
+            "of": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "rest": {
+                "type": "inline",
+                "name": "availabilityDuration"
+              }
+            }
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "availability",
+    "type": "type",
+    "value": {
+      "type": "array",
+      "of": {
+        "type": "object",
+        "attributes": {
+          "_key": {
+            "type": "objectAttribute",
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "rest": {
+          "type": "inline",
+          "name": "availabilityDay"
+        }
       }
     }
   },
