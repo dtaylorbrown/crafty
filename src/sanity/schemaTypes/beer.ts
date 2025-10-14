@@ -15,7 +15,7 @@ export const beerType = defineType({
       name: "description",
       title: "Description",
       description: "A brief description of the beer",
-      type: "string",
+      type: "text",
     }),
     defineField({
       name: "abv",
@@ -41,6 +41,21 @@ export const beerType = defineType({
       title: "Brewery",
       description: "The brewery that produces the beer",
       type: "string",
+    }),
+    defineField({
+      name: "comingSoon",
+      title: "Coming Soon",
+      description: "Indicates if the beer is coming soon",
+      type: "boolean",
+    }),
+    defineField({
+      name: "availableDate",
+      title: "Available From",
+      description: "Date when the beer will be available",
+      type: "datetime",
+      hidden: ({ document }) => {
+        return !document?.comingSoon;
+      },
     }),
     defineField({
       name: "image",

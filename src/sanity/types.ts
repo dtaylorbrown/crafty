@@ -13,6 +13,35 @@
  */
 
 // Source: schema.json
+export type Events = {
+  _id: string;
+  _type: "events";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  date?: string;
+  location?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "pub";
+  };
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
 export type Homepage = {
   _id: string;
   _type: "homepage";
@@ -52,6 +81,8 @@ export type Beer = {
   style?: string;
   allergens?: Array<string>;
   brewery?: string;
+  comingSoon?: boolean;
+  availableDate?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -266,7 +297,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Homepage | Beer | Staff | Pub | AvailabilityDuration | AvailabilityDay | Availability | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Events | Homepage | Beer | Staff | Pub | AvailabilityDuration | AvailabilityDay | Availability | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PUBS_QUERY
