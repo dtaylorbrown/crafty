@@ -79,7 +79,7 @@ export default async function Page({
                           height={75}
                         />
                       ) : (
-                        <p className="w-[75px] h-[75px] bg-gray-300 flex items-center justify-center text-gray-600 rounded-full mr-4 mb-2">
+                        <p className="min-w-[75px] min-h-[75px] bg-gray-300 flex items-center justify-center text-gray-600 rounded-full mr-4 mb-2">
                           No Image
                         </p>
                       )}
