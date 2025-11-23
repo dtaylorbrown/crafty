@@ -22,6 +22,11 @@ export const pubType = defineType({
       type: "string",
     }),
     defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+    }),
+    defineField({
       name: 'availability',
       title: 'Opening Times',
       description: 'The opening times of the pub',

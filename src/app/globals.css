@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-base: var(--font-base);
+  --font-title: var(--font-title);
+}
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: var(--font-base);
 }
 

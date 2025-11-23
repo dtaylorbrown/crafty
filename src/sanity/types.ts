@@ -13,6 +13,62 @@
  */
 
 // Source: schema.json
+export type Events = {
+  _id: string;
+  _type: "events";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  date?: string;
+  location?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "pub";
+  };
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type Homepage = {
+  _id: string;
+  _type: "homepage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  hero?: {
+    headline?: string;
+    subhead?: string;
+    backgroundImage?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+  };
+  intro?: string;
+};
+
 export type Beer = {
   _id: string;
   _type: "beer";
@@ -25,6 +81,8 @@ export type Beer = {
   style?: string;
   allergens?: Array<string>;
   brewery?: string;
+  comingSoon?: boolean;
+  availableDate?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -60,13 +118,6 @@ export type Staff = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  pub?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "pub";
-  }>;
 };
 
 export type Pub = {
@@ -78,6 +129,9 @@ export type Pub = {
   name?: string;
   slug?: Slug;
   tagline?: string;
+  availability?: Array<{
+    _key: string;
+  } & AvailabilityDay>;
   address?: string;
   image?: {
     asset?: {
@@ -91,7 +145,39 @@ export type Pub = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  beers?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "beer";
+  }>;
+  staff?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "staff";
+  }>;
 };
+
+export type AvailabilityDuration = {
+  _type: "availabilityDuration";
+  from?: "12:00 AM" | "12:15 AM" | "12:30 AM" | "12:45 AM" | "1:00 AM" | "1:15 AM" | "1:30 AM" | "1:45 AM" | "2:00 AM" | "2:15 AM" | "2:30 AM" | "2:45 AM" | "3:00 AM" | "3:15 AM" | "3:30 AM" | "3:45 AM" | "4:00 AM" | "4:15 AM" | "4:30 AM" | "4:45 AM" | "5:00 AM" | "5:15 AM" | "5:30 AM" | "5:45 AM" | "6:00 AM" | "6:15 AM" | "6:30 AM" | "6:45 AM" | "7:00 AM" | "7:15 AM" | "7:30 AM" | "7:45 AM" | "8:00 AM" | "8:15 AM" | "8:30 AM" | "8:45 AM" | "9:00 AM" | "9:15 AM" | "9:30 AM" | "9:45 AM" | "10:00 AM" | "10:15 AM" | "10:30 AM" | "10:45 AM" | "11:00 AM" | "11:15 AM" | "11:30 AM" | "11:45 AM" | "12:00 PM" | "12:15 PM" | "12:30 PM" | "12:45 PM" | "1:00 PM" | "1:15 PM" | "1:30 PM" | "1:45 PM" | "2:00 PM" | "2:15 PM" | "2:30 PM" | "2:45 PM" | "3:00 PM" | "3:15 PM" | "3:30 PM" | "3:45 PM" | "4:00 PM" | "4:15 PM" | "4:30 PM" | "4:45 PM" | "5:00 PM" | "5:15 PM" | "5:30 PM" | "5:45 PM" | "6:00 PM" | "6:15 PM" | "6:30 PM" | "6:45 PM" | "7:00 PM" | "7:15 PM" | "7:30 PM" | "7:45 PM" | "8:00 PM" | "8:15 PM" | "8:30 PM" | "8:45 PM" | "9:00 PM" | "9:15 PM" | "9:30 PM" | "9:45 PM" | "10:00 PM" | "10:15 PM" | "10:30 PM" | "10:45 PM" | "11:00 PM" | "11:15 PM" | "11:30 PM" | "11:45 PM";
+  to?: "12:00 AM" | "12:15 AM" | "12:30 AM" | "12:45 AM" | "1:00 AM" | "1:15 AM" | "1:30 AM" | "1:45 AM" | "2:00 AM" | "2:15 AM" | "2:30 AM" | "2:45 AM" | "3:00 AM" | "3:15 AM" | "3:30 AM" | "3:45 AM" | "4:00 AM" | "4:15 AM" | "4:30 AM" | "4:45 AM" | "5:00 AM" | "5:15 AM" | "5:30 AM" | "5:45 AM" | "6:00 AM" | "6:15 AM" | "6:30 AM" | "6:45 AM" | "7:00 AM" | "7:15 AM" | "7:30 AM" | "7:45 AM" | "8:00 AM" | "8:15 AM" | "8:30 AM" | "8:45 AM" | "9:00 AM" | "9:15 AM" | "9:30 AM" | "9:45 AM" | "10:00 AM" | "10:15 AM" | "10:30 AM" | "10:45 AM" | "11:00 AM" | "11:15 AM" | "11:30 AM" | "11:45 AM" | "12:00 PM" | "12:15 PM" | "12:30 PM" | "12:45 PM" | "1:00 PM" | "1:15 PM" | "1:30 PM" | "1:45 PM" | "2:00 PM" | "2:15 PM" | "2:30 PM" | "2:45 PM" | "3:00 PM" | "3:15 PM" | "3:30 PM" | "3:45 PM" | "4:00 PM" | "4:15 PM" | "4:30 PM" | "4:45 PM" | "5:00 PM" | "5:15 PM" | "5:30 PM" | "5:45 PM" | "6:00 PM" | "6:15 PM" | "6:30 PM" | "6:45 PM" | "7:00 PM" | "7:15 PM" | "7:30 PM" | "7:45 PM" | "8:00 PM" | "8:15 PM" | "8:30 PM" | "8:45 PM" | "9:00 PM" | "9:15 PM" | "9:30 PM" | "9:45 PM" | "10:00 PM" | "10:15 PM" | "10:30 PM" | "10:45 PM" | "11:00 PM" | "11:15 PM" | "11:30 PM" | "11:45 PM";
+};
+
+export type AvailabilityDay = {
+  _type: "availabilityDay";
+  day?: "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+  availableTimes?: Array<{
+    _key: string;
+  } & AvailabilityDuration>;
+};
+
+export type Availability = Array<{
+  _key: string;
+} & AvailabilityDay>;
 
 export type SanityImagePaletteSwatch = {
   _type: "sanity.imagePaletteSwatch";
@@ -211,41 +297,112 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Beer | Staff | Pub | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Events | Homepage | Beer | Staff | Pub | AvailabilityDuration | AvailabilityDay | Availability | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: PUBS_QUERY
-// Query: *[_type == "pub" && defined(slug.current)][0...12]{  _id, name, slug}
+// Query: *[_type == "pub" && defined(slug.current)][0...12]{  _id,   name,   slug,   image {     ...,    asset -> {       url,       metadata { dimensions }     }   }, }
 export type PUBS_QUERYResult = Array<{
   _id: string;
   name: string | null;
   slug: Slug | null;
-}>;
-// Variable: PUB_QUERY
-// Query: *[_type == "pub" && slug.current == $slug][0]{  name, tagline, address, image}
-export type PUB_QUERYResult = {
-  name: string | null;
-  tagline: string | null;
-  address: string | null;
   image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset: {
+      url: string | null;
+      metadata: {
+        dimensions: SanityImageDimensions | null;
+      } | null;
+    } | null;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+}>;
+// Variable: PUB_QUERY
+// Query: *[_type == "pub" && slug.current == $slug][0]{  name,   tagline,   address,   image {     ...,    asset -> {       url,       metadata { dimensions }     }   },   "openingHours": availability,   beers[] -> {    name,     description  },  staff[] -> {    name,     role  }}
+export type PUB_QUERYResult = {
+  name: string | null;
+  tagline: string | null;
+  address: string | null;
+  image: {
+    asset: {
+      url: string | null;
+      metadata: {
+        dimensions: SanityImageDimensions | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  openingHours: Array<{
+    _key: string;
+  } & AvailabilityDay> | null;
+  beers: Array<{
+    name: string | null;
+    description: string | null;
+  }> | null;
+  staff: Array<{
+    name: string | null;
+    role: string | null;
+  }> | null;
 } | null;
+// Variable: HOME_QUERY
+// Query: *[_type == "homepage" && slug.current == "/home"]{  slug,  title,  intro,  hero {    headline,    subhead,    backgroundImage {       ...,      asset -> {         url,         metadata { dimensions }       }     }  }}
+export type HOME_QUERYResult = Array<{
+  slug: Slug | null;
+  title: string | null;
+  intro: string | null;
+  hero: {
+    headline: string | null;
+    subhead: string | null;
+    backgroundImage: {
+      asset: {
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+        } | null;
+      } | null;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+  } | null;
+}>;
+// Variable: EVENTS_QUERY
+// Query: *[_type == "events" && date >= now()] | order(date asc)[0...3]{  title,  description,  date,    location -> {    name,    slug  },  image {     ...,    asset -> {       url,       metadata { dimensions }     }   }}
+export type EVENTS_QUERYResult = Array<{
+  title: string | null;
+  description: string | null;
+  date: string | null;
+  location: {
+    name: string | null;
+    slug: Slug | null;
+  } | null;
+  image: {
+    asset: {
+      url: string | null;
+      metadata: {
+        dimensions: SanityImageDimensions | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"pub\" && defined(slug.current)][0...12]{\n  _id, name, slug\n}": PUBS_QUERYResult;
-    "*[_type == \"pub\" && slug.current == $slug][0]{\n  name, tagline, address, image\n}": PUB_QUERYResult;
+    "*[_type == \"pub\" && defined(slug.current)][0...12]{\n  _id, \n  name, \n  slug, \n  image { \n    ...,\n    asset -> { \n      url, \n      metadata { dimensions } \n    } \n  }, \n}": PUBS_QUERYResult;
+    "*[_type == \"pub\" && slug.current == $slug][0]{\n  name, \n  tagline, \n  address, \n  image { \n    ...,\n    asset -> { \n      url, \n      metadata { dimensions } \n    } \n  }, \n  \"openingHours\": availability, \n  beers[] -> {\n    name, \n    description\n  },\n  staff[] -> {\n    name, \n    role\n  }\n}": PUB_QUERYResult;
+    "*[_type == \"homepage\" && slug.current == \"/home\"]{\n  slug,\n  title,\n  intro,\n  hero {\n    headline,\n    subhead,\n    backgroundImage { \n      ...,\n      asset -> { \n        url, \n        metadata { dimensions } \n      } \n    }\n  }\n}": HOME_QUERYResult;
+    "*[_type == \"events\" && date >= now()] | order(date asc)[0...3]{\n  title,\n  description,\n  date,\n    location -> {\n    name,\n    slug\n  },\n  image { \n    ...,\n    asset -> { \n      url, \n      metadata { dimensions } \n    } \n  }\n}": EVENTS_QUERYResult;
   }
 }
